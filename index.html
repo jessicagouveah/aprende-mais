@@ -78,6 +78,18 @@
   <div class="timeline"><h2>Histórico recente</h2><div><b>28/08/2026</b><span>Registro de evolução adicionado</span></div><div><b>20/08/2026</b><span>Estratégias pedagógicas atualizadas</span></div></div>
 </section>
 
+<section id="profilesView" class="view">
+  <div class="page-title"><span class="eyebrow">SELEÇÃO DE PERFIL</span><h1>Entrar em uma área</h1><p>Protótipo: cada perfil possui uma visão diferente do Aprende+.</p></div>
+  <div class="profile-grid">
+    <button class="profile-card" data-profile-view="childView"><span>👧</span><b>Aluno</b><small>Estudar, tirar dúvidas e acompanhar conquistas</small></button>
+    <button class="profile-card" data-profile-view="motherView"><span>👩‍👧</span><b>Família / Responsável</b><small>Acompanhar aprendizagem, documentos e autorizações</small></button>
+    <button class="profile-card" data-profile-view="schoolView"><span>🏫</span><b>Escola</b><small>Visão pedagógica e estratégias autorizadas</small></button>
+    <button class="profile-card featured" data-profile-view="professionalView"><span>🧠</span><b>Psicóloga</b><small>Registros profissionais, avaliações e evolução</small></button>
+    <button class="profile-card featured" data-profile-view="professionalView" data-role-select="therapist"><span>🧩</span><b>Terapeuta</b><small>Avaliações, estratégias e evolução terapêutica</small></button>
+  </div>
+  <div class="prototype-note"><b>Modo demonstração</b><p>As áreas profissionais são simuladas neste protótipo. Em produção, o acesso deverá depender de autenticação e permissões por perfil.</p></div>
+</section>
+
 <section id="studiesView" class="view">
   <div class="page-title"><span class="eyebrow">ESTUDOS + IA</span><h1>Seu tutor de aprendizagem</h1><p>A IA explica, pergunta, adapta e guia — não apenas entrega respostas.</p></div>
   <div class="ai-box"><div class="ai-orb">✦</div><div><b>Como posso ajudar?</b><p>Explique uma dúvida, mande uma tarefa ou peça um plano de estudo.</p></div></div>
@@ -96,7 +108,8 @@
 <button class="nav-item active" data-view="childView">🏠<span>Início</span></button>
 <button class="nav-item" data-view="studiesView">📚<span>Estudos</span></button>
 <button class="nav-item" data-view="winsView">🏆<span>Conquistas</span></button>
-<button class="nav-item" id="switchProfile">👩‍👧<span>Família</span></button>
+<button class="nav-item" data-view="motherView">👩‍👧<span>Família</span></button>
+<button class="nav-item" data-view="profilesView">👥<span>Perfis</span></button>
 </nav>
 </div>
 

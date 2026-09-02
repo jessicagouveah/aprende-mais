@@ -51,14 +51,25 @@ document.querySelectorAll('.nav-item[data-view]').forEach(btn=>btn.onclick=()=>{
 });
 
 let parent=false, autism=false;
-document.getElementById('switchProfile').onclick=()=>{
-  parent=!parent;
-  document.getElementById('childView').classList.toggle('active',!parent);
-  document.getElementById('motherView').classList.toggle('active',parent);
-  document.querySelectorAll('.view').forEach(v=>{ if(v.id!=='childView'&&v.id!=='motherView')v.classList.remove('active')});
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('switchProfile').classList.add('active');
-};
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const view=document.getElementById(id);
+  if(view) view.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active', n.dataset.view===id));
+  if(id==='professionalView'){ document.getElementById('professionalView').scrollIntoView({block:'start'}); }
+}
+
+document.querySelectorAll('.nav-item[data-view]').forEach(btn=>btn.onclick=()=>showView(btn.dataset.view));
+
+document.querySelectorAll('[data-profile-view]').forEach(btn=>btn.onclick=()=>{
+  showView(btn.dataset.profileView);
+  const role=btn.dataset.roleSelect;
+  if(role){
+    document.querySelectorAll('.role-tab').forEach(t=>t.classList.toggle('active', t.dataset.role===role));
+  }
+});
+
 document.getElementById('autismToggle').onclick=()=>{
   autism=!autism;
   const panel=document.getElementById('specialistPanel'), status=document.getElementById('autismStatus');
