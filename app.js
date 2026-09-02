@@ -87,3 +87,61 @@ document.querySelectorAll('.role-tab').forEach(btn=>btn.onclick=()=>{
   document.querySelector('.pro-icon').textContent=btn.dataset.role==='psych'?'🧠':'🧩';
 });
 document.getElementById('notifications').onclick=()=>openModal('school');
+
+// Catálogo curricular do Aprende+ — base comum + componentes complementares comuns.
+// A composição exata varia por rede, estado, escola e projeto pedagógico.
+const subjectCatalog = [
+  {id:'ei-escuta',name:'Escuta, fala, pensamento e imaginação',icon:'🗣️',stages:['infantil'],type:'base',desc:'Linguagem oral, escuta, histórias, expressão e imaginação.'},
+  {id:'ei-corpo',name:'Corpo, gestos e movimentos',icon:'🤸',stages:['infantil'],type:'base',desc:'Movimento, coordenação, expressão corporal e exploração.'},
+  {id:'ei-tracos',name:'Traços, sons, cores e formas',icon:'🎨',stages:['infantil'],type:'base',desc:'Artes, música, desenho, pintura, sons e formas.'},
+  {id:'ei-eu',name:'O eu, o outro e o nós',icon:'👥',stages:['infantil'],type:'base',desc:'Identidade, convivência, respeito e relações.'},
+  {id:'ei-espacos',name:'Espaços, tempos, quantidades, relações e transformações',icon:'🔢',stages:['infantil'],type:'base',desc:'Espaço, tempo, quantidade, natureza e transformações.'},
+  {id:'portugues',name:'Língua Portuguesa',icon:'📖',stages:['ef1','ef2','em'],type:'base',desc:'Leitura, escrita, gramática, oralidade, literatura e produção textual.'},
+  {id:'matematica',name:'Matemática',icon:'📐',stages:['ef1','ef2','em'],type:'base',desc:'Números, álgebra, geometria, medidas, estatística e probabilidade.'},
+  {id:'ciencias',name:'Ciências',icon:'🔬',stages:['ef1','ef2'],type:'base',desc:'Vida, matéria, energia, Terra, ambiente, tecnologia e saúde.'},
+  {id:'historia',name:'História',icon:'🏛️',stages:['ef1','ef2','em'],type:'base',desc:'Tempo histórico, sociedades, Brasil, mundo, cultura e cidadania.'},
+  {id:'geografia',name:'Geografia',icon:'🌎',stages:['ef1','ef2','em'],type:'base',desc:'Espaço geográfico, território, natureza, população, economia e cartografia.'},
+  {id:'arte',name:'Arte',icon:'🎭',stages:['ef1','ef2','em'],type:'base',desc:'Artes visuais, música, dança, teatro e processos de criação.'},
+  {id:'educacao-fisica',name:'Educação Física',icon:'🏃',stages:['ef1','ef2','em'],type:'base',desc:'Esportes, jogos, danças, lutas, ginásticas, corpo e movimento.'},
+  {id:'ingles',name:'Língua Inglesa',icon:'🇬🇧',stages:['ef2','em'],type:'base',desc:'Comunicação, leitura, escrita e cultura em língua inglesa.'},
+  {id:'ensino-religioso',name:'Ensino Religioso',icon:'🕊️',stages:['ef1','ef2'],type:'base',desc:'Conhecimentos religiosos e não religiosos, diversidade e respeito.'},
+  {id:'literatura',name:'Literatura',icon:'📚',stages:['ef2','em'],type:'private',desc:'Obras literárias, escolas literárias, leitura crítica e repertório.'},
+  {id:'redacao',name:'Redação / Produção Textual',icon:'✍️',stages:['ef2','em'],type:'private',desc:'Argumentação, gêneros textuais, escrita, revisão e preparação para provas.'},
+  {id:'espanhol',name:'Língua Espanhola',icon:'🇪🇸',stages:['ef2','em'],type:'private',desc:'Comunicação, leitura, escrita e cultura hispânica; oferta varia por escola.'},
+  {id:'filosofia',name:'Filosofia',icon:'💭',stages:['ef2','em'],type:'private',desc:'Ética, lógica, conhecimento, política, pensamento e argumentação.'},
+  {id:'sociologia',name:'Sociologia',icon:'🌐',stages:['ef2','em'],type:'private',desc:'Sociedade, cultura, trabalho, poder, desigualdades e cidadania.'},
+  {id:'biologia',name:'Biologia',icon:'🧬',stages:['em'],type:'base',desc:'Citologia, genética, evolução, ecologia, fisiologia e biodiversidade.'},
+  {id:'fisica',name:'Física',icon:'⚛️',stages:['em'],type:'base',desc:'Mecânica, energia, ondas, termologia, eletricidade e física moderna.'},
+  {id:'quimica',name:'Química',icon:'⚗️',stages:['em'],type:'base',desc:'Matéria, transformações, estequiometria, soluções, química orgânica e ambiental.'},
+  {id:'projeto-vida',name:'Projeto de Vida',icon:'🧭',stages:['ef2','em'],type:'private',desc:'Autoconhecimento, escolhas, futuro acadêmico, carreira e cidadania.'},
+  {id:'educacao-financeira',name:'Educação Financeira',icon:'💰',stages:['ef1','ef2','em'],type:'private',desc:'Orçamento, consumo consciente, planejamento, juros e decisões financeiras.'},
+  {id:'tecnologia',name:'Tecnologia e Cultura Digital',icon:'💻',stages:['ef1','ef2','em'],type:'private',desc:'Cidadania digital, ferramentas, segurança, informação e tecnologia.'},
+  {id:'programacao',name:'Programação / Pensamento Computacional',icon:'👩‍💻',stages:['ef1','ef2','em'],type:'private',desc:'Lógica, algoritmos, programação, resolução de problemas e criação digital.'},
+  {id:'robotica',name:'Robótica',icon:'🤖',stages:['ef1','ef2','em'],type:'private',desc:'Construção, automação, programação e resolução de desafios.'},
+  {id:'empreendedorismo',name:'Empreendedorismo',icon:'🚀',stages:['ef2','em'],type:'private',desc:'Projetos, inovação, colaboração e solução de problemas.'},
+  {id:'socioemocional',name:'Educação Socioemocional',icon:'🧠',stages:['ef1','ef2','em'],type:'private',desc:'Autoconhecimento, convivência, comunicação, autorregulação e decisões.'},
+  {id:'atualidades',name:'Atualidades e Cidadania',icon:'📰',stages:['ef2','em'],type:'private',desc:'Temas contemporâneos, cidadania, sociedade, ciência e mundo do trabalho.'},
+  {id:'prevestibular',name:'Preparação para Vestibulares e ENEM',icon:'🎯',stages:['em'],type:'private',desc:'Revisão integrada, simulados, redação e estratégia de prova.'},
+  {id:'eletivas',name:'Eletivas / Itinerários Formativos',icon:'🧩',stages:['em'],type:'private',desc:'Componentes escolhidos conforme a proposta da escola e do sistema de ensino.'}
+];
+const stageLabels={infantil:'Educação Infantil',ef1:'Fundamental I',ef2:'Fundamental II',em:'Ensino Médio'};
+const typeLabels={base:'Base comum',private:'Complementar'};
+const subjectCatalogEl=document.getElementById('subjectCatalog');
+const subjectCountEl=document.getElementById('subjectCount');
+function renderSubjects(){
+  const q=(document.getElementById('studySearch')?.value||'').toLowerCase().trim();
+  const stage=document.getElementById('stageFilter')?.value||'all';
+  const network=document.getElementById('networkFilter')?.value||'all';
+  const list=subjectCatalog.filter(s=>(stage==='all'||s.stages.includes(stage))&&(network==='all'||s.type===network)&&(!q||`${s.name} ${s.desc}`.toLowerCase().includes(q)));
+  subjectCountEl.textContent=`${list.length} ${list.length===1?'matéria':'matérias'}`;
+  subjectCatalogEl.innerHTML=list.map(s=>`<button class="subject-card-new ${s.type==='private'?'complementary':''}" data-subject="${s.id}"><span class="subject-icon-new">${s.icon}</span><span class="subject-main"><b>${s.name}</b><small>${s.desc}</small><em>${s.stages.map(x=>stageLabels[x]).join(' • ')} · ${typeLabels[s.type]}</em></span><strong>›</strong></button>`).join('')||'<div class="empty-subjects">Nenhuma matéria encontrada com esses filtros.</div>';
+  subjectCatalogEl.querySelectorAll('[data-subject]').forEach(btn=>btn.onclick=()=>openSubject(btn.dataset.subject));
+}
+function openSubject(id){
+  const s=subjectCatalog.find(x=>x.id===id); if(!s) return;
+  modalContent.innerHTML=`<h2>${s.icon} ${s.name}</h2><p>${s.desc}</p><p><b>Etapas:</b> ${s.stages.map(x=>stageLabels[x]).join(', ')}</p><div class="subject-topics"><b>O que o Aprende+ poderá organizar aqui</b><span>Conteúdos e habilidades por ano</span><span>Explicações adaptadas ao aluno</span><span>Exercícios e quizzes</span><span>Resumos e mapas mentais</span><span>Plano de estudos e acompanhamento</span></div><button class="modal-action">Começar a estudar</button>`;
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+}
+['studySearch','stageFilter','networkFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderSubjects));
+['stageFilter','networkFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderSubjects));
+renderSubjects();
